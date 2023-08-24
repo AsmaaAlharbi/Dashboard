@@ -1,0 +1,33 @@
+﻿@model Dashboard.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<body dir="rtl" id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<h3 class="text-center">تعديل المنتجات</h3>
+
+<form asp-action="UpdateProducts" method="POST">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="row">
+
+        <div class="col-sm-12 mt-2 d-flex justify-content-center">
+            <div class="row">
+
+                <div class="col-sm-12 justify-content-center">
+                    <label for="ProductName">اسم المنتج:</label>
+                    <input asp-for="@Model.ProductName" class="form-control" id="ProductName" name="ProductName" />
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 mt-2 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">حفظ</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</form>
+
+
+</body>
