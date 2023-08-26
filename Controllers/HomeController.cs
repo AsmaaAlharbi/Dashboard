@@ -1,5 +1,6 @@
 ﻿using Dashboard.Data;
 using Dashboard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -17,7 +18,7 @@ namespace Dashboard.Controllers
 			this.context = context;
 		}
 
-
+		[Authorize]
 		public IActionResult Index()
         {
 			var product = context.Products.ToList();

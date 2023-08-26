@@ -92,6 +92,23 @@ namespace Dashboard.Migrations
                     b.ToTable("Invoices");
                 });
 
+            modelBuilder.Entity("Dashboard.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payment");
+                });
+
             modelBuilder.Entity("Dashboard.Models.Product", b =>
                 {
                     b.Property<int>("Id")

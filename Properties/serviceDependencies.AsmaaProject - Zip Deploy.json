@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/AsmaaProject/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsDefaultConnection_BDE6102FFF",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/asmaa/databases/MyShop1",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "dynamicId": null
+    },
+    "mssql4": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/AsmaaProject/providers/Microsoft.ServiceLinker/linkers/ConnectionStrings1_9DD58754B0",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/asmaa/databases/MyShop1",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings1"
+    }
+  }
+}

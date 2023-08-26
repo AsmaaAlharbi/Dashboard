@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Dashboard.Areas.Identity.Data
+
+@inject SignInManager<DashboardUser> SignInManager
+@inject UserManager<DashboardUser> UserManager
+
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <div class="nav-item">
+                <div class=" d-flex justify-content-between align-items-center">
+                    <form id="logoutForm" class="form-inline text-primary m-2 px-3 border rounded bg-light " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="nav-link btn btn-link text-primary">Logout</button>
+                    </form>
+                    <span class=" m-2 p-3 border rounded bg-light text-primary">!Hello @UserManager.GetUserName(User)</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="nav-item">
+                <div class=" d-flex justify-content-between align-items-center">
+                    <a class="nav-link  m-2 p-3 border rounded bg-light text-primary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    <a class="nav-link  m-2 p-3 border rounded bg-light text-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </div>
+            </div>
+        }
+    </div>
+</nav>
