@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Home Page";
+    var name = ViewBag.Name;
 }
 
 <body dir="rtl" id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
@@ -211,6 +212,7 @@
                                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                         <!--begin::Table head-->
                                         <thead>
+                                            <h6>Hi @name</h6>
                                             <!--begin::Table row-->
                                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
 

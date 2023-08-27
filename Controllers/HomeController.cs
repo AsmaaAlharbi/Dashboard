@@ -21,11 +21,35 @@ namespace Dashboard.Controllers
 		[Authorize]
 		public IActionResult Index()
         {
-			var product = context.Products.ToList();
+			var Name = HttpContext.User.Identity.Name;
+            //CookieOptions options = new CookieOptions();
+            //options.Expires = DateTime.Now.AddMinutes(10);
+            //Response.Cookies.Append("Name", Name, options);
+
+            //HttpContext.Session.SetString("Name", Name);
+            
+            TempData["Name"] = Name;
+
+            ViewBag.Name = Name;
+
+            var product = context.Products.ToList();
 			return View(product);
         }
 
-		public IActionResult AddProduct(Product product)
+        public IActionResult ProductDetails()
+        {
+            //ViewBag.Name = Request.Cookies["Name"];
+            //ViewBag.Name = HttpContext.Session.GetString("Name");
+
+            ViewBag.Name = TempData["Name"];
+
+            var productDetails = context.ProductDetail.ToList();
+            var product = context.Products.ToList();
+            ViewBag.ProductDetails = productDetails;
+            return View(product);
+        }
+
+        public IActionResult AddProduct(Product product)
 		{
 			context.Products.Add(product);
 			context.SaveChanges();
@@ -69,13 +93,6 @@ namespace Dashboard.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public IActionResult ProductDetails()
-		{
-			var productDetails = context.ProductDetail.ToList();
-			var product = context.Products.ToList();
-			ViewBag.ProductDetails = productDetails;
-			return View(product);
-		}
 
 		public IActionResult AddProductDetails(ProductDetails productDetails)
 		{

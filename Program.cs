@@ -28,8 +28,9 @@ internal class Program
 		builder.Services.AddDefaultIdentity<DashboardUser>(options => options.SignIn.RequireConfirmedAccount = true)
 	    .AddEntityFrameworkStores<DashboardDbContext>();
 		builder.Services.AddRazorPages();
+        builder.Services.AddSession();
 
-		var app = builder.Build();
+        var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
@@ -54,6 +55,8 @@ internal class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.MapRazorPages();
+
+        app.UseSession();
 
         app.UseDeveloperExceptionPage();
 

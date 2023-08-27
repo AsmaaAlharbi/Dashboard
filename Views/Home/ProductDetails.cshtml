@@ -3,6 +3,7 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["Title"] = "Product Details";
 	var productDetails = ViewBag.ProductDetails;
+	var name = ViewBag.Name;
 
 }
 
@@ -13,7 +14,7 @@
 	<div class="row ">
 		<div class="col-sm-2">
 			<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-				<!--begin::sidebar-->إضا
+				<!--begin::sidebar-->
 				<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 					<!--begin::Logo-->
 					<div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
@@ -216,6 +217,7 @@
 									<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
 										<!--begin::Table head-->
 										<thead>
+											<h6>Hi @name</h6>
 											<!--begin::Table row-->
 											<tr class="text-center text-gray-400 fw-bold fs-7 text-uppercase gs-0">
 												<th class="min-w-125px text-end" style="font-family:cairo"> اسم المنتج</th>
