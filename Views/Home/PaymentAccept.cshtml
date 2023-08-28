@@ -1,0 +1,23 @@
+﻿@model PaymentAccept
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body dir="rtl">
+    <div class="container-fluid mt-4 d-flex justify-content-center">
+        <form asp-action="PaymentAccept" method="post">
+            <div class="row d-flex">
+                <h2 class="text-center">يرجى إدخال بطاقة الدفع لإعتمادها</h2>
+                <div class="col">
+                    <input asp-for="@Model.payment" class="form-control" id="payment" />
+                    <span class="text-danger" asp-validation-for="@Model.payment"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

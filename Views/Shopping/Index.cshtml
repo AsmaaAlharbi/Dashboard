@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ProductDetails>
+@{
+    Layout = "~/Views/Shared/_LayoutShopping.cshtml";
+}
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 m-2">
+                <div class="card text-center" style="width: 18rem;">
+                    <img src="@item.Image" class="card-img-top mx-auto" style="height: 220px; width: 190px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>@item.ProductName</b></h5>
+                        <p class="card-text">@item.Display</p>
+                        <p class="card-text">
+                            <strong>Product Price:</strong> SR @item.Price
+                        </p>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

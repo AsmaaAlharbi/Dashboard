@@ -11,29 +11,44 @@ namespace Dashboard.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-		private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
-		public HomeController(ApplicationDbContext context)
-		{
-			this.context = context;
-		}
-
-		[Authorize]
-		public IActionResult Index()
+        public HomeController(ApplicationDbContext context)
         {
-			var Name = HttpContext.User.Identity.Name;
+            this.context = context;
+        }
+
+        [Authorize]
+        public IActionResult Index()
+        {
+            var Name = HttpContext.User.Identity.Name;
             //CookieOptions options = new CookieOptions();
             //options.Expires = DateTime.Now.AddMinutes(10);
             //Response.Cookies.Append("Name", Name, options);
 
             //HttpContext.Session.SetString("Name", Name);
-            
+
             TempData["Name"] = Name;
 
             ViewBag.Name = Name;
 
             var product = context.Products.ToList();
-			return View(product);
+            return View(product);
+        }
+
+        public IActionResult PaymentAccept()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult PaymentAccept(PaymentAccept paymentAccept)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+
         }
 
         public IActionResult ProductDetails()
@@ -50,18 +65,18 @@ namespace Dashboard.Controllers
         }
 
         public IActionResult AddProduct(Product product)
-		{
-			context.Products.Add(product);
-			context.SaveChanges();
-			return RedirectToAction("Index");
-		}
-
-		public IActionResult CreateNewProduct(Product product)
-		{
+        {
             context.Products.Add(product);
             context.SaveChanges();
             return RedirectToAction("Index");
-		}
+        }
+
+        public IActionResult CreateNewProduct(Product product)
+        {
+            context.Products.Add(product);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Edit(int id)
         {
@@ -81,37 +96,37 @@ namespace Dashboard.Controllers
         }
 
         public IActionResult Delete(int id)
-		{
+        {
 
-			var product = context.Products.SingleOrDefault(p => p.Id == id);
+            var product = context.Products.SingleOrDefault(p => p.Id == id);
 
-			if (product != null)
-			{
-				context.Products.Remove(product);
-				context.SaveChanges();
-			}
-			return RedirectToAction("Index");
-		}
+            if (product != null)
+            {
+                context.Products.Remove(product);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
 
-		public IActionResult AddProductDetails(ProductDetails productDetails)
-		{
-			context.ProductDetail.Add(productDetails);
-			context.SaveChanges();
+        public IActionResult AddProductDetails(ProductDetails productDetails)
+        {
+            context.ProductDetail.Add(productDetails);
+            context.SaveChanges();
 
-			return RedirectToAction("Index");
-		}
+            return RedirectToAction("Index");
+        }
 
-		[HttpPost]
-		public IActionResult ProductDetails(int id)
-		{
-			var productDetails = context.ProductDetail.Where(p => p.Id == id).ToList();
-			ViewBag.ProductDetails = productDetails;
-			var product = context.Products.ToList();
-			return View(product);
-		}
+        [HttpPost]
+        public IActionResult ProductDetails(int id)
+        {
+            var productDetails = context.ProductDetail.Where(p => p.Id == id).ToList();
+            ViewBag.ProductDetails = productDetails;
+            var product = context.Products.ToList();
+            return View(product);
+        }
 
-		public IActionResult Privacy()
+        public IActionResult Privacy()
         {
             return View();
         }
