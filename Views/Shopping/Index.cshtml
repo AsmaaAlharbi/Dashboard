@@ -3,23 +3,94 @@
     Layout = "~/Views/Shared/_LayoutShopping.cshtml";
 }
 
+
 <div class="container">
-    <div class="row d-flex justify-content-center">
-        @foreach (var item in Model)
+    <div class="row">
+        @if (Model != null)
         {
-            <div class="col-md-3 m-2">
-                <div class="card text-center" style="width: 18rem;">
-                    <img src="@item.Image" class="card-img-top mx-auto" style="height: 220px; width: 190px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title"><b>@item.ProductName</b></h5>
-                        <p class="card-text">@item.Display</p>
-                        <p class="card-text">
-                            <strong>Product Price:</strong> SR @item.Price
-                        </p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3" style="width: 20rem;">
+                        <img class="card-img-top" src="~/images/@item.Image" height="350px" width="220px" alt="Card image cap">
+                        <div class="product-detail">
+                            <h5 class="card-title heading text-center">@item.ProductName</h5>
+                            <span class="subheading">Electronics</span>
+                            <blockquote>
+                                <p>@item.Price SAR </p>
+                                <p>@item.Display</p>
+                            </blockquote>
+                            <a asp-action="ProductDetails" asp-route-id="@item.Id" class="btn btn-outline-dark px-5 m-1">DETAILS</a>
+                            <a asp-action="Checkout" asp-route-id="@item.Id"  class="btn btn-outline-dark px-5 m-1">BUY NOW</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
+
     </div>
 </div>
+
+<style>
+    .card {
+        transition: .4s all ease-in;
+        border: none;
+    }
+
+    .carousel-control-next-icon {
+        padding: 0 4px 0 0;
+    }
+
+    .product_price {
+        float: right;
+        font-family: lato;
+        color: #6b7270;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+
+    .product-detail {
+        position: absolute;
+        height: 75px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: rgba(223, 217, 217, 0.75);
+        transition: all 0.35s;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .card .product-detail h5 {
+        font-family: 'Oswald';
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 3px 0;
+    }
+
+    .card .product-detail .subheading {
+        font-weight: 400;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+        color: rgba(0,0,0,0.6);
+    }
+
+    .card .product-detail blockquote {
+        padding: 0;
+        margin: 0;
+        font-style: italic;
+        font-size: 1em;
+    }
+
+    .card:hover .product-detail {
+        height: calc(92%);
+        padding-top: 100px;
+    }
+</style>
